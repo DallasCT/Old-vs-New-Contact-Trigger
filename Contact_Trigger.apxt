@@ -1,0 +1,9 @@
+trigger Contact_Trigger on Contact (before update) {
+    for(Contact c : Trigger.New) {
+    	// Access the "old" record by its ID in Trigger.oldMap
+    	Contact oldCon = Trigger.oldMap.get(c.Id);
+        if(oldCon.Email != c.Email) {
+            system.debug('Email has changed');  
+        }
+    }
+}
